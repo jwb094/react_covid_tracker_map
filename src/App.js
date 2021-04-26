@@ -7,21 +7,23 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Maps from './google_maps.js';
+//import Maps from './google_maps.js';
+import Maps from './gmaps.js';
 
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 function App() {
 
   const [latest,setLatest] = useState([]);
+  const [results,setresults] = useState([]);
   useEffect(() => { //What to do after rendering
     axios
       .all([
         axios.get("https://corona.lmao.ninja/v2/all"),
-        //axios.get("https://corona.lmao.ninja/v2/countries")
+        axios.get("https://corona.lmao.ninja/v2/countries")
       ])
         .then(ResponseArr =>{
           setLatest(ResponseArr[0].data);
-        //  setresults(ResponseArr[1].data);
+          setresults(ResponseArr[1].data);
         })
         .catch(err => {
           console.log(err);
@@ -33,7 +35,7 @@ function App() {
 
   const date = new Date(parseInt(latest.updated));
   const lastUpdated = date.toString();
-  console.log(latest);
+  console.log(setresults);
   return (
    <Container fluid>
    <Row>
@@ -74,6 +76,10 @@ function App() {
             </Card>
         </Col>
     </Row>
+    <Row>
+      <Maps Countries={results}/>
+    </Row>
+
     </Container>
   );
 }
