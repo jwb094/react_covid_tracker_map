@@ -1,9 +1,13 @@
 // import logo from './logo.svg';
  import './App.css';
 import React,{useEffect,useState} from "react";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Maps from './google_maps.js';
 
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 function App() {
@@ -26,24 +30,51 @@ function App() {
     
  
   }, []);
+
+  const date = new Date(parseInt(latest.updated));
+  const lastUpdated = date.toString();
   console.log(latest);
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Container fluid>
+   <Row>
+        <Col>
+            <Card className='text-center' bg="secondary" text='white' style={{margin:"10px"}}>
+                  
+                    <Card.Body>
+                      <Card.Title>Cases</Card.Title>
+                      <Card.Text>{latest.cases}</Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small>Last updated {lastUpdated}</small>
+                    </Card.Footer>
+              </Card>
+        </Col>
+        <Col>
+        <Card className='text-center' bg="danger" text='white' style={{margin:"10px"}}>
+                  
+                  <Card.Body>
+                    <Card.Title>Death</Card.Title>
+                    <Card.Text>{latest.deaths}</Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small>Last updated {lastUpdated}</small>
+                  </Card.Footer>
+            </Card>
+        </Col>
+        <Col>
+        <Card className='text-center' bg="success" text='white' style={{margin:"10px"}}>
+                  
+                  <Card.Body>
+                    <Card.Title>Recovered</Card.Title>
+                    <Card.Text>{latest.deaths}</Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small>Last updated {lastUpdated}</small>
+                  </Card.Footer>
+            </Card>
+        </Col>
+    </Row>
+    </Container>
   );
 }
 
