@@ -9,17 +9,17 @@ const SimpleMap = (props) => {
     lat: 59.95,
     lng: 30.33
   }
-  const countries = props.Countries.map((data,i) => {
-      console.log(data.country);
-    <div>   
-        {data.country}
+  // const countries = props.Countries.map((data,i) => {
+  //     console.log(data.countryInfo.lat);
+  //   <div>   
+  //       {data.country}
 
-    </div>
+  //   </div>
     
 
-  });
+  // });
   console.log(props);
-  console.log(countries);
+  // console.log(countries);
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
@@ -28,12 +28,13 @@ const SimpleMap = (props) => {
           defaultCenter={center}
           defaultZoom={zoom}
         >
-        <countries/>
-          <AnyReactComponent
+
+        <AnyReactComponent
             lat={59.955413}
             lng={30.337844}
             text="My Marker"
           />
+        
         </GoogleMapReact>
       </div>
     );

@@ -7,10 +7,9 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import Maps from './gmaps.js';
 //import Maps from './google_maps.js';
-import Maps from './gmaps.js';
-
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import Maps from './g_map.js';
 function App() {
 
   const [latest,setLatest] = useState([]);
@@ -77,7 +76,7 @@ function App() {
         </Col>
     </Row>
     <Row>
-      <Maps Countries={results}/>
+      <Maps countries={results}/>
     </Row>
 
     </Container>
